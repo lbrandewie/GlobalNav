@@ -1,0 +1,41 @@
+Hey Everyone,
+
+This is my second C++ project. It's my first attempt to realize
+my web GlobalNav app in C++. I'm quite happy with the web app
+(it provides a route map which is kinda cool), and doing it
+as a Windows app is the long-term goal. But, I started with a
+CLI app so as to at least get the math right prior to starting
+the Windows project. The math is non-trivial.
+
+The app takes two airport codes and an approximate number of
+waypoints as its arguments. The actual number of waypoints must
+be one less than a power of two (because of how they're calculated),
+so the number specified will be rounded up if necessary. A maximum
+of 127 waypoints are supported.
+
+This project uses a couple support classes. The code generates
+a lot of strings, and many of them are temporary. Plus it reads
+in a 276k data file. I didn't want to have to save a pointer
+to each one for destruction purposes. So, I wrote BlockStringAlloc.
+
+It's a simple memory reallocator that dispenses string pointers.
+It keeps track of a list of blocks of memory to ensure proper 
+deallocation. By default it allocates 64k blocks, but one of the 
+constructors allows this to be changed.
+
+The other class I wrote is StringHashIndex. I've been doing perl
+for a long time and I really like hashes (associative arrays,
+dictionaries) as a means of storing data. The ability to retrieve
+data by a string key rather than an index value stops many bugs in
+their tracks.
+
+Since I knew where this project was going to go, I also wrote in
+by-index access to both the keys and the values of the hash items.
+This will be useful in the future Windows app when typing prediction
+will be implemented.
+
+Please send bug reports or other feedback to lars@piumasoft.com.
+
+Thanks,
+
+Lars Brandewie 8/18/2020
